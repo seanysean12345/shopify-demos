@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roast & Ritual — Specialty Coffee</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#faf8f5;--surface:#fff;--surface2:#f3efe8;--text:#1a1a1a;--muted:#777;--accent:#8b5e3c;--accent-dark:#6b4226;--accent-light:#f5efe7;--cream:#fffcf7;--radius:12px;--serif:'DM Serif Display',serif;--sans:'DM Sans',sans-serif}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+
+/* Top */
+.topbar{background:var(--accent-dark);color:#fff;text-align:center;padding:10px;font-size:12px;font-weight:500;letter-spacing:.5px}
+.topbar a{text-decoration:underline}
+
+/* Nav */
+nav{display:flex;align-items:center;justify-content:space-between;padding:20px 48px;background:var(--cream);border-bottom:1px solid #ebe6dd}
+.logo{font-family:var(--serif);font-size:28px;color:var(--accent-dark)}
+.nav-links{display:flex;gap:32px;font-size:14px;font-weight:500}
+.nav-links a:hover{color:var(--accent)}
+.nav-right{display:flex;gap:16px;align-items:center}
+.nav-right svg{width:20px;height:20px;stroke:var(--text);fill:none;stroke-width:1.5;cursor:pointer}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:85vh}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:80px 60px;background:var(--cream)}
+.hero-tag{font-size:12px;text-transform:uppercase;letter-spacing:3px;color:var(--accent);margin-bottom:24px;font-weight:600}
+.hero h1{font-family:var(--serif);font-size:clamp(44px,5vw,68px);line-height:1.1;margin-bottom:20px;color:var(--accent-dark)}
+.hero p{font-size:16px;color:var(--muted);max-width:420px;line-height:1.7;margin-bottom:32px}
+.hero-btns{display:flex;gap:16px;align-items:center}
+.btn-warm{padding:16px 36px;background:var(--accent);color:#fff;border:none;border-radius:40px;font-weight:600;font-size:14px;cursor:pointer;transition:all .3s;font-family:var(--sans)}
+.btn-warm:hover{background:var(--accent-dark);transform:translateY(-2px);box-shadow:0 8px 24px rgba(139,94,60,.25)}
+.btn-ghost{font-size:14px;font-weight:600;color:var(--accent);display:flex;align-items:center;gap:8px;cursor:pointer}
+.btn-ghost svg{width:18px;height:18px;stroke:var(--accent);fill:none;stroke-width:2}
+.hero-right{background:var(--surface2);display:flex;align-items:center;justify-content:center;position:relative}
+.hero-img{width:400px;height:480px;background:var(--surface);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--muted);box-shadow:0 20px 60px rgba(0,0,0,.06);flex-direction:column;gap:8px}
+.hero-img svg{width:48px;height:48px;stroke:var(--muted);fill:none;stroke-width:1}
+
+/* Value Props */
+.values{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #ebe6dd;border-bottom:1px solid #ebe6dd}
+.val-item{padding:32px;text-align:center;border-right:1px solid #ebe6dd}
+.val-item:last-child{border-right:none}
+.val-item h4{font-size:14px;font-weight:700;margin-bottom:4px}
+.val-item p{font-size:12px;color:var(--muted)}
+
+/* Products */
+.products{padding:80px 48px}
+.section-header{text-align:center;margin-bottom:48px}
+.section-header h2{font-family:var(--serif);font-size:40px;color:var(--accent-dark)}
+.section-header p{color:var(--muted);margin-top:8px;font-size:15px}
+.product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.product-card{background:var(--surface);border-radius:var(--radius);overflow:hidden;transition:transform .3s,box-shadow .3s;cursor:pointer}
+.product-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.06)}
+.product-img{aspect-ratio:1;background:var(--surface2);display:flex;align-items:center;justify-content:center;color:#bbb;font-size:13px;position:relative}
+.product-tag{position:absolute;top:16px;left:16px;background:var(--accent);color:#fff;font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px}
+.product-info{padding:24px}
+.product-origin{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);font-weight:600;margin-bottom:6px}
+.product-name{font-family:var(--serif);font-size:20px;margin-bottom:4px}
+.product-desc{font-size:13px;color:var(--muted);margin-bottom:12px;line-height:1.5}
+.product-bottom{display:flex;align-items:center;justify-content:space-between}
+.product-price{font-size:18px;font-weight:700}
+.add-btn{width:40px;height:40px;border-radius:50%;background:var(--accent-light);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .3s}
+.add-btn:hover{background:var(--accent)}
+.add-btn:hover svg{stroke:#fff}
+.add-btn svg{width:18px;height:18px;stroke:var(--accent);fill:none;stroke-width:2}
+
+/* Story */
+.story{display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--accent-dark);color:#fff;min-height:500px}
+.story-img{background:var(--surface2);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14px}
+.story-content{display:flex;flex-direction:column;justify-content:center;padding:80px 60px}
+.story-content h2{font-family:var(--serif);font-size:40px;margin-bottom:20px}
+.story-content p{font-size:15px;line-height:1.8;opacity:.85;margin-bottom:24px}
+.story-content a{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14px;border-bottom:1px solid rgba(255,255,255,.4);padding-bottom:2px}
+
+/* Subscription */
+.subscription{padding:80px 48px;background:var(--cream)}
+.sub-card{max-width:800px;margin:0 auto;text-align:center;background:var(--surface);border-radius:24px;padding:60px;box-shadow:0 12px 40px rgba(0,0,0,.04)}
+.sub-card h2{font-family:var(--serif);font-size:36px;color:var(--accent-dark);margin-bottom:12px}
+.sub-card>p{color:var(--muted);margin-bottom:32px;font-size:15px}
+.sub-tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px}
+.tier{padding:24px;border:1.5px solid #ebe6dd;border-radius:var(--radius);cursor:pointer;transition:all .3s}
+.tier:hover,.tier.active{border-color:var(--accent);background:var(--accent-light)}
+.tier h4{font-size:15px;font-weight:700;margin-bottom:4px}
+.tier p{font-size:13px;color:var(--muted)}
+.tier .price{font-size:24px;font-weight:700;color:var(--accent-dark);margin-top:8px}
+
+/* Reviews */
+.reviews{padding:80px 48px}
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.review-card{background:var(--surface);border-radius:var(--radius);padding:32px;border:1px solid #ebe6dd}
+.review-stars{color:#d4a853;font-size:16px;margin-bottom:12px}
+.review-text{font-size:14px;line-height:1.7;color:#555;margin-bottom:16px;font-style:italic}
+.review-author{font-size:13px;font-weight:600}
+.review-sub{font-size:12px;color:var(--muted)}
+
+/* Footer */
+footer{padding:60px 48px;border-top:1px solid #ebe6dd;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;background:var(--cream)}
+.footer-brand .logo{margin-bottom:12px}
+.footer-brand p{font-size:13px;color:var(--muted);line-height:1.6;max-width:280px}
+.footer-col h4{font-size:12px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:16px}
+.footer-col a{display:block;font-size:14px;color:#555;margin-bottom:10px}
+.footer-col a:hover{color:var(--accent)}
+.footer-bottom{padding:20px 48px;font-size:12px;color:var(--muted);text-align:center;background:var(--cream)}
+
+@media(max-width:768px){
+  .hero{grid-template-columns:1fr}
+  .hero-right{display:none}
+  .hero-left{padding:48px 24px}
+  .product-grid{grid-template-columns:1fr}
+  .values{grid-template-columns:repeat(2,1fr)}
+  .val-item:nth-child(2){border-right:none}
+  .story{grid-template-columns:1fr}
+  .story-img{display:none}
+  .review-grid{grid-template-columns:1fr}
+  .sub-tiers{grid-template-columns:1fr}
+  nav{padding:16px 20px}
+  .nav-links{display:none}
+  footer{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">☕ Free shipping on subscriptions — <a href="#">Start yours today</a></div>
+
+<nav>
+  <div class="logo">Roast & Ritual</div>
+  <div class="nav-links">
+    <a href="#">Shop Coffee</a>
+    <a href="#">Subscriptions</a>
+    <a href="#">Our Story</a>
+    <a href="#">Brew Guides</a>
+  </div>
+  <div class="nav-right">
+    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Single Origin • Small Batch</div>
+    <h1>Coffee worth waking up for.</h1>
+    <p>Ethically sourced, expertly roasted specialty coffee delivered to your door. From farm to cup in under two weeks.</p>
+    <div class="hero-btns">
+      <button class="btn-warm">Shop Coffee</button>
+      <div class="btn-ghost">Our Story <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      Hero Image
+    </div>
+  </div>
+</section>
+
+<div class="values">
+  <div class="val-item"><h4>☕ Single Origin</h4><p>Traceable to the farm</p></div>
+  <div class="val-item"><h4>🌱 Ethically Sourced</h4><p>Fair trade partnerships</p></div>
+  <div class="val-item"><h4>📦 Roasted Fresh</h4><p>Ships within 48 hours</p></div>
+  <div class="val-item"><h4>🔄 Subscribe & Save</h4><p>15% off every order</p></div>
+</div>
+
+<section class="products">
+  <div class="section-header">
+    <h2>Our Coffees</h2>
+    <p>Roasted weekly in small batches in Los Angeles</p>
+  </div>
+  <div class="product-grid">
+    <div class="product-card">
+      <div class="product-img"><div class="product-tag">Best Seller</div>400 × 400</div>
+      <div class="product-info">
+        <div class="product-origin">Ethiopia — Yirgacheffe</div>
+        <div class="product-name">Morning Light</div>
+        <div class="product-desc">Blueberry, jasmine, honey. Light roast with a bright, floral finish.</div>
+        <div class="product-bottom">
+          <div class="product-price">$22</div>
+          <button class="add-btn"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">400 × 400</div>
+      <div class="product-info">
+        <div class="product-origin">Colombia — Huila</div>
+        <div class="product-name">Velvet Dark</div>
+        <div class="product-desc">Dark chocolate, caramel, walnut. Medium-dark roast for espresso lovers.</div>
+        <div class="product-bottom">
+          <div class="product-price">$24</div>
+          <button class="add-btn"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img"><div class="product-tag" style="background:#059669">New</div>400 × 400</div>
+      <div class="product-info">
+        <div class="product-origin">Guatemala — Antigua</div>
+        <div class="product-name">Ritual Blend</div>
+        <div class="product-desc">Brown sugar, citrus, milk chocolate. Our house blend, balanced and smooth.</div>
+        <div class="product-bottom">
+          <div class="product-price">$20</div>
+          <button class="add-btn"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="story">
+  <div class="story-img">Story Image</div>
+  <div class="story-content">
+    <h2>From farm to your cup.</h2>
+    <p>We work directly with farmers in Ethiopia, Colombia, and Guatemala. Every bag is roasted to order in small batches at our LA roastery, then shipped within 48 hours. That means your coffee is never more than two weeks from harvest to brew.</p>
+    <p>It's not just coffee. It's a ritual.</p>
+    <a href="#">Learn more about our sourcing →</a>
+  </div>
+</section>
+
+<section class="subscription">
+  <div class="sub-card">
+    <h2>Start Your Ritual</h2>
+    <p>Subscribe and save 15%. Pause or cancel anytime.</p>
+    <div class="sub-tiers">
+      <div class="tier">
+        <h4>Explorer</h4>
+        <p>1 bag / month</p>
+        <div class="price">$18/mo</div>
+      </div>
+      <div class="tier active">
+        <h4>Enthusiast</h4>
+        <p>2 bags / month</p>
+        <div class="price">$34/mo</div>
+      </div>
+      <div class="tier">
+        <h4>Devotee</h4>
+        <p>4 bags / month</p>
+        <div class="price">$64/mo</div>
+      </div>
+    </div>
+    <button class="btn-warm">Subscribe Now</button>
+  </div>
+</section>
+
+<section class="reviews">
+  <div class="section-header">
+    <h2>What People Say</h2>
+    <p>Join 5,000+ happy coffee drinkers</p>
+  </div>
+  <div class="review-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"Best coffee I've ever had delivered. The Morning Light is unreal. I cancelled my other subscription the same week."</div>
+      <div class="review-author">Sarah M.</div>
+      <div class="review-sub">Verified Subscriber</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"The freshness is insane. You can actually taste the difference when coffee is roasted to order vs sitting on a shelf."</div>
+      <div class="review-author">Marcus T.</div>
+      <div class="review-sub">Verified Subscriber</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"Finally a subscription that's worth it. Great coffee, great packaging, and the brew guides actually help."</div>
+      <div class="review-author">Aisha K.</div>
+      <div class="review-sub">Verified Subscriber</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">
+    <div class="logo">Roast & Ritual</div>
+    <p>Specialty coffee roasted in small batches in Los Angeles. Ethically sourced, delivered fresh.</p>
+  </div>
+  <div class="footer-col"><h4>Shop</h4><a href="#">All Coffee</a><a href="#">Subscriptions</a><a href="#">Equipment</a><a href="#">Gift Cards</a></div>
+  <div class="footer-col"><h4>Learn</h4><a href="#">Brew Guides</a><a href="#">Our Story</a><a href="#">Sourcing</a><a href="#">Blog</a></div>
+  <div class="footer-col"><h4>Help</h4><a href="#">FAQ</a><a href="#">Shipping</a><a href="#">Returns</a><a href="#">Contact</a></div>
+</footer>
+<div class="footer-bottom">© 2026 Roast & Ritual Coffee Co. All rights reserved.</div>
+
+</body>
+</html>

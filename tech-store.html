@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VOLT — Tech Accessories</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#fafafa;--surface:#fff;--surface2:#f0f0f0;--text:#111;--muted:#666;--accent:#4f46e5;--accent-light:#eef2ff;--radius:16px;--font:'Inter',sans-serif}
+body{font-family:var(--font);background:var(--bg);color:var(--text);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+
+/* Top Bar */
+.topbar{background:var(--accent);color:#fff;text-align:center;padding:10px;font-size:12px;font-weight:500;letter-spacing:.5px}
+
+/* Nav */
+nav{background:var(--surface);padding:16px 48px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #eee;position:sticky;top:0;z-index:100;backdrop-filter:blur(12px)}
+.logo{font-size:26px;font-weight:800;letter-spacing:-1px;display:flex;align-items:center;gap:8px}
+.logo svg{width:28px;height:28px;fill:var(--accent)}
+.nav-center{display:flex;gap:28px;font-size:14px;font-weight:500;color:var(--muted)}
+.nav-center a:hover{color:var(--accent)}
+.nav-right{display:flex;gap:16px;align-items:center}
+.search-bar{display:flex;align-items:center;gap:8px;background:var(--surface2);padding:10px 16px;border-radius:40px;font-size:13px;color:var(--muted);width:220px}
+.search-bar svg{width:16px;height:16px;stroke:var(--muted);fill:none;stroke-width:2}
+.nav-icon{width:20px;height:20px;stroke:var(--text);fill:none;stroke-width:1.5;cursor:pointer}
+.nav-icon:hover{stroke:var(--accent)}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:80vh;overflow:hidden}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:80px 60px;background:var(--surface)}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:var(--accent-light);color:var(--accent);padding:8px 16px;border-radius:40px;font-size:12px;font-weight:600;margin-bottom:24px;width:fit-content}
+.hero-tag svg{width:14px;height:14px;fill:var(--accent)}
+.hero h1{font-size:clamp(40px,5vw,64px);line-height:1.1;font-weight:800;letter-spacing:-2px;margin-bottom:20px}
+.hero h1 span{background:linear-gradient(135deg,var(--accent),#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:16px;color:var(--muted);max-width:420px;line-height:1.7;margin-bottom:32px}
+.hero-btns{display:flex;gap:12px}
+.btn-primary{padding:14px 32px;background:var(--accent);color:#fff;border:none;border-radius:40px;font-weight:600;font-size:14px;cursor:pointer;transition:all .3s;font-family:var(--font)}
+.btn-primary:hover{background:#4338ca;transform:translateY(-2px);box-shadow:0 8px 24px rgba(79,70,229,.3)}
+.btn-secondary{padding:14px 32px;background:transparent;color:var(--text);border:1.5px solid #ddd;border-radius:40px;font-weight:600;font-size:14px;cursor:pointer;font-family:var(--font)}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
+.hero-stats{display:flex;gap:40px;margin-top:48px;padding-top:32px;border-top:1px solid #eee}
+.stat-num{font-size:28px;font-weight:800;letter-spacing:-1px}
+.stat-label{font-size:12px;color:var(--muted);margin-top:2px}
+.hero-right{background:linear-gradient(135deg,#eef2ff,#faf5ff);display:flex;align-items:center;justify-content:center;position:relative}
+.hero-product{width:380px;height:420px;background:var(--surface);border-radius:24px;box-shadow:0 20px 60px rgba(0,0,0,.08);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:var(--muted);font-size:14px}
+.hero-product svg{width:48px;height:48px;stroke:var(--muted);fill:none;stroke-width:1}
+.float-badge{position:absolute;background:#fff;border-radius:16px;padding:12px 20px;box-shadow:0 8px 24px rgba(0,0,0,.08);font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px}
+.float-badge.top{top:60px;right:40px}
+.float-badge.bottom{bottom:80px;left:40px}
+.float-badge svg{width:18px;height:18px}
+.star{fill:#fbbf24;stroke:#fbbf24}
+
+/* Trust */
+.trust{display:flex;justify-content:center;gap:60px;padding:40px;border-bottom:1px solid #eee;background:var(--surface)}
+.trust-item{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:500;color:var(--muted)}
+.trust-item svg{width:20px;height:20px;stroke:var(--accent);fill:none;stroke-width:1.5}
+
+/* Products */
+.products{padding:80px 48px}
+.section-header{text-align:center;margin-bottom:48px}
+.section-header h2{font-size:36px;font-weight:800;letter-spacing:-1px}
+.section-header p{color:var(--muted);margin-top:8px;font-size:15px}
+.product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.product-card{background:var(--surface);border-radius:var(--radius);overflow:hidden;transition:transform .3s,box-shadow .3s;cursor:pointer;border:1px solid #eee}
+.product-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.06)}
+.product-img{aspect-ratio:1;background:var(--surface2);display:flex;align-items:center;justify-content:center;color:#bbb;font-size:13px;position:relative}
+.product-badge{position:absolute;top:12px;left:12px;background:var(--accent);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px}
+.product-info{padding:20px}
+.product-cat{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--accent);font-weight:600;margin-bottom:6px}
+.product-name{font-size:15px;font-weight:600;margin-bottom:4px}
+.product-price{font-size:14px;color:var(--muted)}
+.product-rating{display:flex;align-items:center;gap:4px;margin-top:8px;font-size:12px;color:var(--muted)}
+.product-rating svg{width:14px;height:14px}
+
+/* Features */
+.features{padding:80px 48px;background:var(--surface)}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:48px}
+.feat-card{text-align:center;padding:40px 24px}
+.feat-icon{width:56px;height:56px;background:var(--accent-light);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
+.feat-icon svg{width:24px;height:24px;stroke:var(--accent);fill:none;stroke-width:1.5}
+.feat-card h3{font-size:18px;font-weight:700;margin-bottom:8px}
+.feat-card p{font-size:14px;color:var(--muted);line-height:1.6}
+
+/* CTA */
+.cta{margin:0 48px 80px;background:linear-gradient(135deg,var(--accent),#7c3aed);border-radius:24px;padding:80px;text-align:center;color:#fff}
+.cta h2{font-size:40px;font-weight:800;letter-spacing:-1px;margin-bottom:12px}
+.cta p{opacity:.85;margin-bottom:32px;font-size:16px}
+.cta-form{display:flex;max-width:440px;margin:0 auto;gap:0}
+.cta-form input{flex:1;padding:16px 20px;border:none;border-radius:40px 0 0 40px;font-size:14px;font-family:var(--font);outline:none}
+.cta-form button{padding:16px 28px;background:#111;color:#fff;border:none;border-radius:0 40px 40px 0;font-weight:700;font-size:13px;cursor:pointer;font-family:var(--font)}
+
+/* Footer */
+footer{padding:60px 48px;border-top:1px solid #eee;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}
+.footer-brand p{font-size:13px;color:var(--muted);line-height:1.6;margin-top:12px;max-width:280px}
+.footer-col h4{font-size:12px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:16px}
+.footer-col a{display:block;font-size:14px;color:#555;margin-bottom:10px}
+.footer-col a:hover{color:var(--accent)}
+.footer-bottom{padding:20px 48px;border-top:1px solid #eee;font-size:12px;color:var(--muted);text-align:center}
+
+@media(max-width:768px){
+  .hero{grid-template-columns:1fr}
+  .hero-right{display:none}
+  .hero-left{padding:48px 24px}
+  .product-grid{grid-template-columns:repeat(2,1fr)}
+  .feat-grid{grid-template-columns:1fr}
+  nav{padding:12px 20px}
+  .nav-center,.search-bar{display:none}
+  footer{grid-template-columns:1fr 1fr}
+  .trust{flex-wrap:wrap;gap:24px}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">⚡ Launch Week Sale — 20% off all accessories with code VOLT20</div>
+
+<nav>
+  <div class="logo"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> VOLT</div>
+  <div class="nav-center">
+    <a href="#">Chargers</a>
+    <a href="#">Cases</a>
+    <a href="#">Audio</a>
+    <a href="#">Cables</a>
+    <a href="#">Bundles</a>
+  </div>
+  <div class="nav-right">
+    <div class="search-bar"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Search products...</div>
+    <svg class="nav-icon" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <svg class="nav-icon" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> New Generation Tech</div>
+    <h1>Power your<br><span>digital life.</span></h1>
+    <p>Premium tech accessories designed for the way you actually use your devices. Built to last, priced to love.</p>
+    <div class="hero-btns">
+      <button class="btn-primary">Shop Bestsellers</button>
+      <button class="btn-secondary">Watch Demo</button>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">50K+</div><div class="stat-label">Happy Customers</div></div>
+      <div><div class="stat-num">4.9</div><div class="stat-label">Average Rating</div></div>
+      <div><div class="stat-num">200+</div><div class="stat-label">Products</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="float-badge top"><svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> 4.9 Rating (2.4K reviews)</div>
+    <div class="hero-product">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      Featured Product
+    </div>
+    <div class="float-badge bottom">🚚 Free shipping over $50</div>
+  </div>
+</section>
+
+<div class="trust">
+  <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> 2-Year Warranty</div>
+  <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> 30-Day Returns</div>
+  <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> Fast Charging</div>
+  <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg> Free Shipping 50+</div>
+</div>
+
+<section class="products">
+  <div class="section-header">
+    <h2>Bestsellers</h2>
+    <p>Our most loved products, chosen by 50,000+ customers</p>
+  </div>
+  <div class="product-grid">
+    <div class="product-card">
+      <div class="product-img"><div class="product-badge">Bestseller</div>400 × 400</div>
+      <div class="product-info">
+        <div class="product-cat">Chargers</div>
+        <div class="product-name">VOLT 65W GaN Charger</div>
+        <div class="product-price">$49.99</div>
+        <div class="product-rating"><svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> 4.9 (847)</div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">400 × 400</div>
+      <div class="product-info">
+        <div class="product-cat">Cases</div>
+        <div class="product-name">Armor Pro Case — iPhone</div>
+        <div class="product-price">$34.99</div>
+        <div class="product-rating"><svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> 4.8 (623)</div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img"><div class="product-badge" style="background:#059669">New</div>400 × 400</div>
+      <div class="product-info">
+        <div class="product-cat">Audio</div>
+        <div class="product-name">SoundPods Pro ANC</div>
+        <div class="product-price">$79.99</div>
+        <div class="product-rating"><svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> 4.7 (412)</div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">400 × 400</div>
+      <div class="product-info">
+        <div class="product-cat">Cables</div>
+        <div class="product-name">Braided USB-C 100W</div>
+        <div class="product-price">$19.99</div>
+        <div class="product-rating"><svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> 4.9 (1.2K)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="section-header">
+    <h2>Why VOLT?</h2>
+    <p>We're not just another accessories brand</p>
+  </div>
+  <div class="feat-grid">
+    <div class="feat-card">
+      <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+      <h3>Fast Charge Tech</h3>
+      <p>GaN technology delivers maximum power in the smallest package. Charge up to 3x faster.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <h3>Built to Last</h3>
+      <p>Military-grade materials with a 2-year warranty. Every product tested beyond industry standards.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+      <h3>Customer Love</h3>
+      <p>4.9 average rating from 50,000+ customers. 30-day no-questions-asked returns.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>Stay Charged</h2>
+  <p>Get 15% off your first order and early access to new drops.</p>
+  <div class="cta-form">
+    <input type="email" placeholder="Enter your email">
+    <button>Get 15% Off</button>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">
+    <div class="logo"><svg viewBox="0 0 24 24" style="width:24px;height:24px"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> VOLT</div>
+    <p>Premium tech accessories designed for the way you actually use your devices.</p>
+  </div>
+  <div class="footer-col"><h4>Products</h4><a href="#">Chargers</a><a href="#">Cases</a><a href="#">Audio</a><a href="#">Cables</a><a href="#">Bundles</a></div>
+  <div class="footer-col"><h4>Company</h4><a href="#">About</a><a href="#">Blog</a><a href="#">Careers</a><a href="#">Press</a></div>
+  <div class="footer-col"><h4>Support</h4><a href="#">Help Center</a><a href="#">Shipping</a><a href="#">Returns</a><a href="#">Warranty</a></div>
+</footer>
+<div class="footer-bottom">© 2026 VOLT Technologies. All rights reserved.</div>
+
+</body>
+</html>
